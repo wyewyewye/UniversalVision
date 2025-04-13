@@ -1,16 +1,26 @@
 # glad
 FILE(GLOB SRC ${CMAKE_SOURCE_DIR}/third_party/glad/src/*.c)
 
-LIST(APPEND SRC ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
-                ${CMAKE_CURRENT_SOURCE_DIR}/src/application.cpp)
+LIST(APPEND SRC ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
 
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/inc
-                    "E:/workspace/glfw-3.4.bin.WIN64/include"
+INCLUDE_DIRECTORIES("E:/workspace/glfw-3.4.bin.WIN64/include"
                     ${CMAKE_SOURCE_DIR}/third_party/glad/include)
 
-ADD_EXECUTABLE(${PROJECT_NAME} ${SRC})
+LIST(APPEND APP_SRC ${CMAKE_CURRENT_SOURCE_DIR}/src/application.cpp)
 
-TARGET_LINK_LIBRARIES(${PROJECT_NAME} "E:/workspace/glfw-3.4.bin.WIN64/lib-vc2022/glfw3.lib" 
+FILE(GLOB APP_INC ${CMAKE_CURRENT_SOURCE_DIR}/inc/*.h)
+
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/inc)
+
+ADD_LIBRARY(app STATIC ${APP_SRC} ${APP_INC})
+
+ADD_EXECUTABLE(${PROJECT_NAME} ${SRC} ${INC})
+
+SOURCE_GROUP("src" FILES ${SRC})
+SOURCE_GROUP("inc" FILES ${INC})
+
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} app 
+                                      "E:/workspace/glfw-3.4.bin.WIN64/lib-vc2022/glfw3.lib" 
                                       opengl32.lib)
 
-SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES FOLDER "app")
+SET_TARGET_PROPERTIES(app PROPERTIES FOLDER "app")

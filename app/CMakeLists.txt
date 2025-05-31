@@ -19,8 +19,6 @@ ADD_EXECUTABLE(${PROJECT_NAME} ${SRC} ${INC})
 # SOURCE_GROUP("src" FILES ${SRC})
 # SOURCE_GROUP("inc" FILES ${INC})
 
-TARGET_LINK_LIBRARIES(${PROJECT_NAME} app 
-                                      ${GLFW_LIB_PATH}/glfw3.lib
-                                      opengl32.lib)
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} app ${GLFW_LIB_PATH}/glfw3.lib opengl32.lib base)
 
 SET_TARGET_PROPERTIES(app PROPERTIES FOLDER "app")

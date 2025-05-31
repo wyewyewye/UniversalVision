@@ -8,11 +8,14 @@
 
 #include <iostream>
 #include "application.h"
+#include "base/inc/logging.h"
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
 int main(int argc, char* argv[])
 {
+	univision::init();
+	return 0;
 	std::cout << "Hello, World!" << std::endl;
 	// Init opengl core mode.
 	glfwInit();

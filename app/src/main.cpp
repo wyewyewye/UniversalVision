@@ -7,14 +7,18 @@
  */
 
 #include <iostream>
+#include <string>
 #include "application.h"
 #include "base/inc/logging.h"
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
+static std::string TAG = "main";
+
 int main(int argc, char* argv[])
 {
-	univision::init();
+	univision::initLog();
+	LOG_INFO(TAG) << "wye test info log";
 	return 0;
 	std::cout << "Hello, World!" << std::endl;
 	// Init opengl core mode.

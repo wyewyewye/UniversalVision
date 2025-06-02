@@ -5,26 +5,15 @@ IF(NOT ENABLE_POCO_LOG AND NOT ENABLE_BOOST_LOG)
     MESSAGE(FATAL_ERROR "Please enable one of the log system: ENABLE_POCO_LOG or ENABLE_BOOST_LOG in config.py")
 ENDIF()
 
-IF(ENABLE_BOOST_LOG)
-    MESSAGE(STATUS "Enable Boost log")
-    # SET(LOG_LIBS Boost::log Boost::log_setup)
-    # ADD_DEFINITIONS(-DENABLE_BOOST_LOG -DBOOST_LOG_DYN_LINK)
-    # target_compile_definitions(base PRIVATE ENABLE_BOOST_LOG)
-ELSEIF(ENABLE_POCO_LOG)
-    MESSAGE(STATUS "Enable Poco log")
-    # SET(LOG_LIBS Poco::Foundation)
-    ADD_DEFINITIONS(-DENABLE_POCO_LOG)
-    # target_compile_definitions(base PRIVATE NABLE_POCO_LOG)
-ENDIF()
-
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/inc)
 
 LIST(APPEND BASE_SRC ${CMAKE_CURRENT_SOURCE_DIR}/inc/logging.h
                      ${CMAKE_CURRENT_SOURCE_DIR}/src/logging.cpp)
 
 ADD_LIBRARY(base ${BASE_SRC})
-TARGET_LINK_LIBRARIES(base 
-    Poco::Foundation     
-    ${Boost_LIBRARIES}
+# target_compile_definitions(base PRIVATE ${LOG_MACRO})
+TARGET_LINK_LIBRARIES(base
+                      Poco::Foundation
+                      ${Boost_LIBRARIES}
 )
 

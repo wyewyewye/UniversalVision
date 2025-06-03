@@ -43,7 +43,7 @@ class CMakeConfig:
     # mkdir cmake-build
     # cd cmake-build
     # cmake .. -DCMAKE_INSTALL_PREFIX="D:\workspace\cpp_project\poco_vs2022"
-    # cmake --build . --config Release --target install
+    # cmake --build . --config Debug --target install
     POCO_VERSION = "1.14.2"
     POCO_CMAKE_PACKAGE_PATH = r'D:\workspace\cpp_project\poco_vs2022'
     POCO_INCLUDE_PATH = r'D:\workspace\cpp_project\poco_vs2022\include'

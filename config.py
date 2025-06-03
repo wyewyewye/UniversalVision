@@ -1,4 +1,5 @@
 # XXX_CMAKE_PACKAGE_PATH is use for cmake find_package(setting CMAKE_PREFIX_PATH)
+# XXX_INCLUDE_PATH is use for vscode c_cpp_properties.json
 # if XXX_CMAKE_PACKAGE_PATH is not set, cmake will search XXX_INCLUDE_PATH and XXX_LIB_PATH
 class CMakeConfig:
     BUILD_DIR = "build"
@@ -25,7 +26,7 @@ class CMakeConfig:
     # https://blog.csdn.net/nanke_yh/article/details/124346308
     BOOST_VERSION = "1.88.0"
     BOOST_CMAKE_PACKAGE_PATH = r'D:\workspace\cpp_project\boost_vs2022'
-    BOOST_INCLUDE_PATH = r''
+    BOOST_INCLUDE_PATH = r'D:\workspace\cpp_project\boost_vs2022\include\boost-1_88'
     BOOST_LIB_PATH = r''
 
     # GTEST
@@ -34,7 +35,7 @@ class CMakeConfig:
     # cmake --build . --config Debug --target install
     GTEST_VERSION = "1.17.0"
     GTEST_CMAKE_PACKAGE_PATH = r'D:\workspace\cpp_project\gtest_vs2022'
-    GTEST_INCLUDE_PATH = r''
+    GTEST_INCLUDE_PATH = r'D:\workspace\cpp_project\gtest_vs2022\include'
     GTEST_LIB_PATH = r''
     
     # POCO
@@ -45,5 +46,12 @@ class CMakeConfig:
     # cmake --build . --config Release --target install
     POCO_VERSION = "1.14.2"
     POCO_CMAKE_PACKAGE_PATH = r'D:\workspace\cpp_project\poco_vs2022'
-    POCO_INCLUDE_PATH = r''
+    POCO_INCLUDE_PATH = r'D:\workspace\cpp_project\poco_vs2022\include'
     POCO_LIB_PATH = r''
+    
+    # FFMPEG
+    # https://www.ffmpeg.org/releases/ffmpeg-5.1.6.tar.gz
+    FFMPEG_VERSION = "5.1.6"
+    FFMPEG_CMAKE_PACKAGE_PATH = r'D:\workspace\cpp_project\ffmpeg_vs2022'
+    FFMPEG_INCLUDE_PATH = r''
+    FFMPEG_LIB_PATH = r''

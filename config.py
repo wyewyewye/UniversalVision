@@ -4,7 +4,8 @@
 class CMakeConfig:
     BUILD_DIR = "build"
     BUILD_TYPE = "Debug" # Release
-    
+    DEBUG = 1 if BUILD_TYPE == "Debug" else 0
+
     ENABLE_TEST = 1
     ENABLE_BOOST_LOG = 1
     
@@ -50,8 +51,9 @@ class CMakeConfig:
     POCO_LIB_PATH = r''
     
     # FFMPEG
-    # https://www.ffmpeg.org/releases/ffmpeg-5.1.6.tar.gz
-    FFMPEG_VERSION = "5.1.6"
+    # https://www.ffmpeg.org/releases/ffmpeg-4.4.6.tar.gz   
+    # 直接使用编译好的库或者使用msys2编译
+    FFMPEG_VERSION = "4.4.6"
     FFMPEG_CMAKE_PACKAGE_PATH = r'D:\workspace\cpp_project\ffmpeg_vs2022'
     FFMPEG_INCLUDE_PATH = r''
     FFMPEG_LIB_PATH = r''

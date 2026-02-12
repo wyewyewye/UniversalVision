@@ -3,5 +3,8 @@
 
 A lightweight universal application for browsing local multimedia(files/devices), RTC, pushing/pulling stream(live).
 
+# Environment
+Base on: C++17, vs2022
+
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details

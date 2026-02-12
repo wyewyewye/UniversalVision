@@ -19,6 +19,7 @@ int main(int argc, char* argv[])
 {
 	univision::initLog();
 	LOG_INFO(TAG) << "wye test info log";
+	system("pause");
 	return 0;
 	std::cout << "Hello, World!" << std::endl;
 	// Init opengl core mode.

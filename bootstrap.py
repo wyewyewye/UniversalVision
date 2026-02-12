@@ -38,21 +38,30 @@ if p.returncode == 0:
 else:
     logging.info("CMake configure failed!")
     
-# TODO(wye): Add include directory to VSCode .c_cpp_properties.json
+# TODO(wye): Add include directory, DEFINES to VSCode .c_cpp_properties.json
 vscode_cpp_json_file = os.path.join(os.getcwd(), ".vscode", "c_cpp_properties.json")
 if not os.path.exists(vscode_cpp_json_file):
     logging.info(f"Please create {vscode_cpp_json_file} manually! F1 -> C/C++ Edit Configurations\n Execute bootstrap.py again.")
 else:
-    for k, v in CMAKE_PARAMS.items():
-        if isinstance(v, str):
-            if k.endswith("_INCLUDE_PATH") and len(v) > 0 and os.path.exists(v):
-                with open(vscode_cpp_json_file, "r") as f:
-                    cpp_json = json.load(f)
+    cpp_json = None
+    with open(vscode_cpp_json_file, "r") as f:
+        cpp_json = json.load(f)
+    if cpp_json is not None:
+        for k, v in CMAKE_PARAMS.items():
+            if isinstance(v, str):
+                if k.endswith("_INCLUDE_PATH") and len(v) > 0 and os.path.exists(v):
                     if v not in cpp_json["configurations"][0]["includePath"]:
                         cpp_json["configurations"][0]["includePath"].append(v)
-                with open(vscode_cpp_json_file, "w") as f:
-                    json.dump(cpp_json, f, indent=4)
-    logging.info(f"Update {vscode_cpp_json_file} success!")
+            if isinstance(v, int) and v == 1:
+                logging.info(f"Add define: {k}")
+                if k not in cpp_json["configurations"][0]["defines"]:
+                    cpp_json["configurations"][0]["defines"].append(k)
+
+        with open(vscode_cpp_json_file, "w") as f:
+            json.dump(cpp_json, f, indent=4)
+        logging.info(f"Update {vscode_cpp_json_file} success!")
+    else:
+        logging.info(f"Update {vscode_cpp_json_file} failed, please create {vscode_cpp_json_file} manually! F1 -> C/C++ Edit Configurations\n Execute bootstrap.py again.")
 
 # TODO(wye): Execute vscode cmake-tools build
 logging.info("Please execute vscode cmake-tools build manually!")
